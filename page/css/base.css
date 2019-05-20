@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'MyIcon';
+    src: url("../font/glyphicons-halflings-regular.woff2");
+}
+
+:root {
+    --header_color: #191818;
+    --text_color: #d5d5d5;
+    --border-color: #e3e3e3;
+    --shadow-color: #5f5f5f;
+    --bg-color: #f5f5f5;
+    --article-footer-bg: #1f1f1f;
+    --article-main-color: #13102b;
+    --article-main-title-hover: #337ab7;
+}
+
+:root,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    /*overflow: hidden;*/
+}
+
+.wrapper {
+    width: 100%;
+    min-width: 1170px;
+    min-height: 100%;
+    background-image: url('../img/bg.jpg');
+    box-sizing: border-box;
+}
+
+/*博客头部*/
+
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: var(--header_color);
+    box-shadow: 0 2px 2px rgba(25, 25, 24, .5);
+}
+
+.header_container {
+    position: relative;
+    width: 1170px;
+    height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.header .title {
+    margin: 0 15px;
+    line-height: 50px;
+    color: var(--text_color);
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.menu {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text_color);
+}
+
+.menu > li {
+    display: inline-block;
+    vertical-align: top;
+    width: 60px;
+}
+
+.menu > li > a {
+    text-decoration: none;
+    color: var(--text_color);
+}
+
+.search_bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+    line-height: 50px;
+}
+
+.search_bar > input {
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.search_bar > button {
+    padding: 10px;
+    background-color: var(--text_color);
+    color: var(--header_color);
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.search_bar > button:hover {
+    background-color: rgba(213, 213, 213, .8);
+    color: var(--text_color);
+}
+
+/*文章内容区*/
+.content {
+    display: flex;
+    width: 1170px;
+    margin: 30px auto 0;
+}
+
+.content_left {
+    flex: 1;
+    padding: 0 15px;
+}
+
+.content_right {
+    width: 33.33%;
+    padding: 0 15px;
+}
+
+/*底部*/
+.footer {
+}
+
+/*通用*/
+
+.pull_right {
+    float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
