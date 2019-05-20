@@ -230,6 +230,35 @@ body {
 
 /*底部*/
 .footer {
+    width: 100%;
+    padding: 20px 0;
+    background-color: var(--article-footer-bg);
+    text-align: center;
+    color: var(--text_color);
+}
+
+.footer .type_list {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.footer .type_list > li {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.footer .type_list > li a {
+    text-decoration: none;
+    color: #a2a2a2;
+}
+
+.footer .type_list > li a:hover {
+    text-decoration: none;
+    color: var(--article-main-title-hover);
+}
+
+.footer p {
+    color: #a2a2a2;
 }
 
 /*通用*/
