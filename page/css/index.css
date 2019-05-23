@@ -25,7 +25,13 @@
     margin-bottom: 10px;
 }
 
-.article_list {
+.every_day p:nth-last-of-type(1):after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.article {
     width: 100%;
     margin-bottom: 20px;
     background-color: #fff;
@@ -70,6 +76,7 @@
 .article_footer > a {
     text-decoration: none;
     color: var(--text_color);
+    margin-right: 5px;
 }
 
 .article_footer > a:hover {

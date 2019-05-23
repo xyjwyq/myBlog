@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/siteMap.css">
 </head>
 <body>
-<div class="siteMap_wrapper">
+<div id="siteMap_wrapper" class="siteMap_wrapper">
     <div class="title"><h3>个人博客’s SiteMap</h3></div>
     <div class="head">
         <a href="/">个人博客</a>
@@ -16,38 +16,17 @@
     <div class="content_map">
         <h4>最新文章</h4>
         <ul class="map_list">
-            <li><a href="/">【更新】PC端微信(2.6.7.57)防撤回</a></li>
-            <li><a href="/">php基于sha1withRSA算法的签名和验签(pfx证书)</a></li>
-            <li><a href="/">C语言实现单链表的创建、元素添加删除等操作</a></li>
-            <li><a href="/">unoconv：在OpenOffice支持的任何文档格式之间进行转换</a></li>
-            <li><a href="/">树莓派安装homebridge小记</a></li>
-            <li><a href="/">初烧盲狙一条铁三角e40</a></li>
-            <li><a href="/">git-bash设置ssh心跳包防超时断开</a></li>
-            <li><a href="/">使用码云git的webhook实现生产环境代码的自动pull</a></li>
-            <li><a href="/">【HD】一个时代的结束-发现者号航天飞机与747的最后一次亲密接触</a></li>
-            <li><a href="/">可以在家里这样练:胸肌与肱三头肌锻炼</a></li>
-            <li><a href="/">【更新】PC端微信(2.6.7.57)防撤回</a></li>
-            <li><a href="/">php基于sha1withRSA算法的签名和验签(pfx证书)</a></li>
-            <li><a href="/">C语言实现单链表的创建、元素添加删除等操作</a></li>
-            <li><a href="/">unoconv：在OpenOffice支持的任何文档格式之间进行转换</a></li>
-            <li><a href="/">树莓派安装homebridge小记</a></li>
-            <li><a href="/">初烧盲狙一条铁三角e40</a></li>
-            <li><a href="/">git-bash设置ssh心跳包防超时断开</a></li>
-            <li><a href="/">使用码云git的webhook实现生产环境代码的自动pull</a></li>
-            <li><a href="/">【HD】一个时代的结束-发现者号航天飞机与747的最后一次亲密接触</a></li>
-            <li><a href="/">可以在家里这样练:胸肌与肱三头肌锻炼</a></li>
-            <li><a href="/">【更新】PC端微信(2.6.7.57)防撤回</a></li>
-            <li><a href="/">php基于sha1withRSA算法的签名和验签(pfx证书)</a></li>
-            <li><a href="/">C语言实现单链表的创建、元素添加删除等操作</a></li>
-            <li><a href="/">unoconv：在OpenOffice支持的任何文档格式之间进行转换</a></li>
-            <li><a href="/">树莓派安装homebridge小记</a></li>
-            <li><a href="/">初烧盲狙一条铁三角e40</a></li>
-            <li><a href="/">git-bash设置ssh心跳包防超时断开</a></li>
-            <li><a href="/">使用码云git的webhook实现生产环境代码的自动pull</a></li>
-            <li><a href="/">【HD】一个时代的结束-发现者号航天飞机与747的最后一次亲密接触</a></li>
-            <li><a href="/">可以在家里这样练:胸肌与肱三头肌锻炼</a></li>
+            <li v-for="(blog, index) in blogList" :key="index">
+                <a :href="blog.link">{{blog.title}}</a>
+            </li>
         </ul>
     </div>
 </div>
+
+<script src="./dep/vue.js"></script>
+<script src="./dep/axios.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/base.js"></script>
+<script src="./js/siteMap.js"></script>
 </body>
 </html>
