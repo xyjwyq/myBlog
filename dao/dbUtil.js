@@ -19,5 +19,13 @@ function queryCallBack(cb) {
     }
 }
 
+function queryFn(sqlStatement, params = [], cb) {
+    let connection = createConnection();
+    connection.connect();
+    connection.query(sqlStatement, params, queryCallBack(cb));
+    connection.end();
+}
+
 module.exports.createConnection = createConnection;
 module.exports.queryCallBack = queryCallBack;
+module.exports.queryFn = queryFn;

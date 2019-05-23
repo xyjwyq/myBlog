@@ -25,7 +25,14 @@ function queryAllBlog(cb) {
     connection.end();
 }
 
+function queryBlogByViewsAndTime(cb) {
+    let querySql = 'select id,title from blog order by views desc, c_time desc limit 10',
+        params = [];
+    dbUtil.queryFn(querySql, params, cb);
+}
+
 module.exports = {
     addBlog,
-    queryAllBlog
+    queryAllBlog,
+    queryBlogByViewsAndTime
 };

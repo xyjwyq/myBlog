@@ -17,10 +17,18 @@ function writeResult(status, msg, data) {
     );
 }
 
+function sucCallBack(request, response) {
+    return function(res = null) {
+        response.writeHead(200);
+        response.write(writeResult('success', '成功', res));
+        response.end();
+    }
+}
 
 
 module.exports = {
     postParamsParse,
     getNow,
-    writeResult
+    writeResult,
+    sucCallBack
 };

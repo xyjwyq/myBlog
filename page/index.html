@@ -37,9 +37,7 @@
                         <h2 class="title">
                             <a :href="article.link">{{article.title}}</a>
                         </h2>
-                        <p>
-                            {{article.content}}
-                        </p>
+                        <p v-html="article.content"></p>
                     </div>
                     <div class="article_footer">
                         发布于{{article.date}} | 浏览({{article.views}}) | Tags：
@@ -53,8 +51,8 @@
             <div id="tag_cloud" class="right_module tag_cloud">
                 <div class="title" :style="styleObj">随机标签云</div>
                 <div class="tag_content">
-                    <a v-for="(tag, index) in tags" :key="index" :href="getUrl(tag)"
-                       :style="tagStyles[index]">{{tag}}</a>
+                    <a v-for="(tagItem, index) in tags" :key="index" :href="getUrl(tagItem.tag)"
+                       :style="tagStyles[index]">{{tagItem.tag}}</a>
                 </div>
             </div>
             <div id="hot" class="right_module hot">

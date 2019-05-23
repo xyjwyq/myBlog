@@ -26,7 +26,6 @@ let everyDay = new Vue({
         getData() {
             let _this = this;
             axios.get('/queryEveryday').then(function (res) {
-                console.log(res);
                 let item = res.data.data[0];
                 _this.content = item.content;
                 _this.author = item.author;
@@ -73,7 +72,6 @@ let articleList = new Vue({
         //    获取文章数据
         axios.get('/getAllBlog').then(function (res) {
             _this.articles = dataHandler.blog(res.data.data);
-            console.log(_this.articles);
         });
     }
 });

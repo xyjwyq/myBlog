@@ -9,9 +9,7 @@ let tagCloud = new Vue({
             tagStyles: []
         }
     },
-    computed: {
-
-    },
+    computed: {},
     methods: {
         init() {
             let _this = this;
@@ -19,7 +17,13 @@ let tagCloud = new Vue({
                 let color = createColorWithooutBloak();
                 _this.$set(_this.styleObj, 'color', color);
             }, 2000);
-            this.createTagStyles();
+        },
+        getData() {
+            let _this = this;
+            axios.get('/getAllTag').then(function (res) {
+                _this.tags = res.data.data;
+                _this.createTagStyles();
+            });
         },
         getUrl(tag) {
             return '/getBlogByTag?tag=' + tag;
@@ -34,13 +38,14 @@ let tagCloud = new Vue({
         },
         createTagStyles() {
             if (this.tags.length === 0) return;
-            this.tags.forEach((tag) => {
+            this.tags.forEach(() => {
                 this.tagStyles.push(this.getRandomColorAndSize());
             });
         }
     },
     created() {
         this.init();
+        this.getData();
     }
 });
 
@@ -49,24 +54,7 @@ let hot = new Vue({
     el: '#hot',
     data() {
         return {
-            hotList: [
-                {
-                    title: '查看你的AWS服务器已使用流量',
-                    link: '/'
-                },
-                {
-                    title: '使用码云git的webhook实现生产环境代',
-                    link: '/'
-                },
-                {
-                    title: 'VirtualBox压缩vmdk、vagrant打包b',
-                    link: '/'
-                },
-                {
-                    title: 'python+selenium自动登录qq空间并下载',
-                    link: '/'
-                },
-            ],
+            hotList: [],
             styleObj: {
                 transition: 'all 2s ease'
             }
@@ -79,10 +67,18 @@ let hot = new Vue({
                 let color = createColorWithooutBloak();
                 _this.$set(_this.styleObj, 'color', color);
             }, 2000);
+        },
+        getData() {
+            let _this = this;
+            axios.get('/getNewHotBlog').then(function (res) {
+                _this.hotList = dataHandler.hot(res.data.data);
+                console.log(_this.hotList);
+            });
         }
     },
     created() {
         this.init();
+        this.getData();
     }
 });
 
@@ -92,22 +88,22 @@ let comment = new Vue({
         return {
             comments: [
                 {
-                    username:'a',
+                    username: 'a',
                     date: '2018-10-10',
                     content: '好的，谢谢博主好的，谢谢博主好的，谢谢博主好的，谢谢博主好的，谢谢博主好的，谢谢博主',
-                    link:'/'
+                    link: '/'
                 },
                 {
-                    username:'b',
+                    username: 'b',
                     date: '2018-10-11',
                     content: '好的，谢谢博主好的，谢谢博主好的，谢谢博主好的，谢谢博主好的，谢谢博主好的，谢谢博主',
-                    link:'/'
+                    link: '/'
                 },
                 {
-                    username:'c',
+                    username: 'c',
                     date: '2018-10-12',
                     content: '好的，谢谢博主好的，谢谢博主好的，谢谢博主好的，谢谢博主好的，谢谢博主好的，谢谢博主',
-                    link:'/'
+                    link: '/'
                 },
             ],
             styleObj: {

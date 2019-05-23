@@ -1,6 +1,15 @@
 let $author = $('#every_day_author'),
     $editor = $('#editor'),
-    $sendBtn = $('#send_every_day');
+    $sendBtn = $('#send_every_day'),
+    firstFocus = false;
+
+$editor.on('focus', function () {
+    if(!firstFocus){
+        firstFocus = true;
+        $(this).html('');
+    }
+
+});
 
 $sendBtn.on('click', function () {
     let author = $author.val(),
@@ -18,6 +27,7 @@ $sendBtn.on('click', function () {
             alert(res.msg);
             $author.val('');
             $editor.html('');
+            firstFocus = false;
 
         },
         error(res) {

@@ -149,10 +149,11 @@ body {
 }
 
 .tag_cloud .tag_content > a {
+    display: inline-block;
     text-decoration: none;
     color: var(--text_color);
     margin: 0 5px;
-    word-break: break-all;
+    word-break: keep-all;
 }
 
 .hot .hot_content {

@@ -21,3 +21,11 @@ dataHandler.blog = function (blogList) {
     });
     return blogList;
 };
+
+dataHandler.hot = function (hotList) {
+    if (!hotList || !Array.isArray(hotList) || hotList.length === 0) return [];
+    hotList.forEach(function (hotItem) {
+        hotItem.link = `/blog_detail.html?blog_id=${hotItem.id}`;
+    });
+    return hotList;
+};
