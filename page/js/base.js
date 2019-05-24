@@ -72,7 +72,6 @@ let hot = new Vue({
             let _this = this;
             axios.get('/getNewHotBlog').then(function (res) {
                 _this.hotList = dataHandler.hot(res.data.data);
-                console.log(_this.hotList);
             });
         }
     },

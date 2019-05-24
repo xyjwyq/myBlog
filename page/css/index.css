@@ -83,3 +83,53 @@
     text-decoration: none;
     color: var(--article-main-title-hover);
 }
+
+.article_list .pagination {
+    margin-bottom: 15px;
+}
+
+.article_list .pagination button {
+    padding: 10px;
+    background-color: #fff;
+    outline: none;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.article_list .pagination button.active {
+    background-color: #409eff;
+    color: #fff;
+}
+
+.article_list .pagination button[disabled=disabled] {
+    background-color: #eee;
+}
+
+.article_list .pagination button:hover {
+    background-color: #eee;
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

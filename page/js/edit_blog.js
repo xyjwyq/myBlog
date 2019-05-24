@@ -1,7 +1,16 @@
 let $sendBlogBtn = $('#sendBlogBtn'),
     $blogTitle = $('#title'),
     $blogTags = $('#tags'),
-    $editor = $('#editor');
+    $editor = $('#editor'),
+    firstFocus = false;
+
+$editor.on('focus', function () {
+    if(!firstFocus){
+        firstFocus = true;
+        $(this).html('');
+    }
+
+});
 
 $sendBlogBtn.on('click', function () {
     let title = $blogTitle.val(),
@@ -18,7 +27,12 @@ $sendBlogBtn.on('click', function () {
         method: 'post',
         data: JSON.stringify(params),
         success: function (resp) {
-            console.log(resp);
+            res = JSON.parse(resp);
+            alert(res.msg);
+            $blogTitle.val('');
+            $blogTags.val('');
+            $editor.html('');
+            firstFocus = false;
         },
         error: function (resp) {
             console.log(resp);

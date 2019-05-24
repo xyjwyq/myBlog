@@ -1,3 +1,5 @@
+const url = require('url');
+
 const blogDao = require('../dao/blogDap.js');
 const tagDao = require('../dao/tagDao');
 const tagBlogMappingDao = require('../dao/tagBlogMappingDao');
@@ -62,5 +64,38 @@ function getNewHotBlog(request, response) {
 }
 
 path.set('/getNewHotBlog', getNewHotBlog);
+
+function getBlogMap(request, response) {
+    blogDao.queryBlogByTime(baseUtil.sucCallBack(request, response));
+}
+
+path.set('/getBlogMap', getBlogMap);
+
+function getBlogById(request, response) {
+    let id = url.parse(request.url, true).query.blog_id;
+    // 查询博客内容并且添加一次浏览量
+    blogDao.queryBlogById(id, function (res) {
+        if (res !== null || res.length > 0) {
+            baseUtil.sucCallBack(request, response)(res);
+            let views = res[0].views + 1;
+            blogDao.addBlogViewsById(id, views);
+        }
+    });
+}
+
+path.set('/getBlogById', getBlogById);
+
+function getBlogCount(request, response) {
+    blogDao.queryBlogCount(baseUtil.sucCallBack(request, response));
+}
+
+path.set('/getBlogCount', getBlogCount);
+
+function getBlogListByPage(request, response) {
+    let {page, pageSize} = url.parse(request.url, true).query;
+    blogDao.queryBlogListByPage(parseInt(page), parseInt(pageSize), baseUtil.sucCallBack(request, response));
+}
+
+path.set('/getBlogListByPage', getBlogListByPage);
 
 module.exports.path = path;

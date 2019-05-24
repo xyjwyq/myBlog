@@ -2,36 +2,18 @@ let siteMap = new Vue({
     el: '#siteMap_wrapper',
     data() {
         return {
-            blogList: [
-                {
-                    title: '【更新】PC端微信(2.6.7.57)防撤回',
-                    link: '/'
-                },
-                {
-                    title: '【更新】PC端微信(2.6.7.57)防撤回',
-                    link: '/'
-                },
-                {
-                    title: '【更新】PC端微信(2.6.7.57)防撤回',
-                    link: '/'
-                },
-                {
-                    title: '【更新】PC端微信(2.6.7.57)防撤回',
-                    link: '/'
-                },
-                {
-                    title: '【更新】PC端微信(2.6.7.57)防撤回',
-                    link: '/'
-                },
-                {
-                    title: '【更新】PC端微信(2.6.7.57)防撤回',
-                    link: '/'
-                },
-            ]
+            blogList: []
         }
     },
-    methods: {},
+    methods: {
+        getData() {
+            let _this = this;
+            axios.get('/getBlogMap').then(function (res) {
+                _this.blogList = dataHandler.blogMap(res.data.data);
+            });
+        }
+    },
     created() {
-
+        this.getData();
     }
 });

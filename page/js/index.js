@@ -56,22 +56,52 @@ let articleList = new Vue({
     el: '#article_list',
     data() {
         return {
-            articles: []
+            articles: [],
+            pagination: {
+                total: 100,
+                pageSize: 5,
+                currentPage: 1
+            }
         }
     },
-    computed: {},
+    computed: {
+        getTotalPage() {
+            return Math.ceil(this.pagination.total / this.pagination.pageSize);
+        }
+    },
     methods: {
-        init() {
+        async init() {
+            let resCount = await this.getBlogCount();
+            this.pagination.total = resCount.data.data[0].blogCount;
+            let resArticles = await this.getBlogData();
+            this.articles = dataHandler.blog(resArticles.data.data);
         },
-        dataHandler() {
-
+        getBlogData() {
+            let page = this.pagination.currentPage - 1,
+                pageSize = this.pagination.pageSize;
+            return axios.get(`/getBlogListByPage?page=${page}&pageSize=${pageSize}`);
+        },
+        getBlogCount() {
+            return axios.get('/getBlogCount');
+        },
+        async prePage() {
+            this.pagination.currentPage--;
+            let res = await this.getBlogData();
+            this.articles = dataHandler.blog(res.data.data);
+        },
+        async nextPage() {
+            this.pagination.currentPage++;
+            let res = await this.getBlogData();
+            this.articles = dataHandler.blog(res.data.data);
+        },
+        async jumpPage(page) {
+            this.pagination.currentPage = page;
+            let res = await this.getBlogData();
+            this.articles = dataHandler.blog(res.data.data);
         }
     },
     created() {
-        let _this = this;
-        //    获取文章数据
-        axios.get('/getAllBlog').then(function (res) {
-            _this.articles = dataHandler.blog(res.data.data);
-        });
+        this.init();
+
     }
 });

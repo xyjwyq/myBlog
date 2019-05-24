@@ -2,12 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>个人博客——文章详情页</title>
+    <title>个人博客———详情页</title>
     <link rel="icon" type="image/png" href="./img/blog.png">
     <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/about.css">
+    <link rel="stylesheet" href="./css/blog_detail.css">
 </head>
 <body>
-    文章详情页
+<div class="wrapper">
+    <header class="header">
+        <div class="header_container">
+            <a href="/" class="title">我的个人博客|技术博客</a>
+            <ul class="menu">
+                <li><a href="/">首页</a></li>
+                <li><a href="/siteMap.html">地图</a></li>
+                <li><a href="/about.html">关于</a></li>
+                <li><a href="/guestBook.html">留言</a></li>
+            </ul>
+            <div class="search_bar">
+                <input type="text" placeholder="输入关键词查找"/>
+                <button type="button">搜索</button>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="content_left">
+           <div id="blog_detail" class="blog_detail" >
+               <h3 class="blog_title">{{blog.title}}</h3>
+               <p class="blog_info">
+                   分类: <span v-for="(tag, index) in blog.tags" :key="index" style="margin-left: 5px;"><a href="/">{{tag}}</a></span>
+                   发布于: {{blog.date}} 浏览({{blog.views}}) 评论(0)</p>
+               <hr style="margin:10px 0;">
+               <div class="blog_content" v-html="blog.content"></div>
+           </div>
+        </div>
+        <div class="content_right">
+            <div id="tag_cloud" class="right_module tag_cloud">
+                <div class="title" :style="styleObj">随机标签云</div>
+                <div class="tag_content">
+                    <a v-for="(tagItem, index) in tags" :key="index" :href="getUrl(tagItem.tag)"
+                       :style="tagStyles[index]">{{tagItem.tag}}</a>
+                </div>
+            </div>
+            <div id="hot" class="right_module hot">
+                <div class="title" :style="styleObj">最新热门</div>
+                <div class="hot_content">
+                    <ul>
+                        <li v-for="(hotItem, index) in hotList" :key="index">
+                            <a :href="hotItem.link">{{hotItem.title}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="comment" class="right_module comment">
+                <div class="title" :style="styleObj">最新评论</div>
+                <div class="comment_list">
+                    <ul>
+                        <li v-for="(commentItem, index) in comments" :key="index" class="comment_item">
+                            <div class="item_head">
+                                <span class="comment_author">{{commentItem.username}}</span>
+                                <span class="comment_time pull_right">{{commentItem.date}}</span>
+                            </div>
+                            <div class="item_content">
+                                <a :href="commentItem.link" title="评论来源: 留言">{{commentItem.content}}</a>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="friend_link" class="right_module friend_link">
+                <div class="title">友情链接</div>
+                <div class="link_content">
+                    <a href="/">挨踢茶馆</a>
+                    <a href="/">挨踢茶馆</a>
+                    <a href="/">挨踢茶馆</a>
+                    <a href="/">挨踢茶馆</a>
+                    <a href="/">挨踢茶馆</a>
+                    <a href="/">挨踢茶馆</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <ul class="type_list">
+            <li><a href="/">C/C++</a></li>
+            <li><a href="/">CSS/DIV</a></li>
+            <li><a href="/">javacript</a></li>
+            <li><a href="/">java</a></li>
+            <li><a href="/">Linux</a></li>
+            <li><a href="/">Mac</a></li>
+            <li><a href="/">PC技术</a></li>
+            <li><a href="/">PHP</a></li>
+            <li><a href="/">Python</a></li>
+        </ul>
+        <p>Copyright © 2010-2017 个人博客</p>
+    </footer>
+</div>
+
+<script src="./dep/vue.js"></script>
+<script src="./dep/axios.min.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/base.js"></script>
+<script src="./js/blog_detail.js"></script>
 </body>
 </html>

@@ -16,8 +16,12 @@ dataHandler.blog = function (blogList) {
     if (!blogList || !Array.isArray(blogList) || blogList.length === 0) return [];
     blogList.forEach(function (blog) {
         blog.tags = blog.tags.split(',');
-        blog.date = new Date(parseInt(blog.c_time)*1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        blog.date = new Date(parseInt(blog.c_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
         blog.link = `/blog_detail.html?blog_id=${blog.id}`;
+        blog.content = blog.content.replace(/<img[\w\W]*">/g, '');
+        blog.content = blog.content.replace(/(<([^>]+)>)/g, '');
+        blog.content = blog.content.replace(/&nbsp;/g, ' ');
+        blog.content = blog.content.substring(0, 100);
     });
     return blogList;
 };
@@ -29,3 +33,21 @@ dataHandler.hot = function (hotList) {
     });
     return hotList;
 };
+
+dataHandler.blogMap = function (blogList) {
+    if (!blogList || !Array.isArray(blogList) || blogList.length === 0) return [];
+    blogList.forEach(function (blogList) {
+        blogList.link = `/blog_detail.html?blog_id=${blogList.id}`;
+    });
+    return blogList;
+};
+
+dataHandler.blogDetail = function (blogs) {
+    if (!blogs || !Array.isArray(blogs) || blogs.length === 0) return [];
+    blogs.forEach(function (blog) {
+        blog.tags = blog.tags.split(',');
+        blog.date = new Date(parseInt(blog.c_time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+    });
+    return blogs;
+};
+
